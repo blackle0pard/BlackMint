@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Categories - {{ SITENAME }}{% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="content pure-u-1 pure-u-md-3-4">
+  <div>
+    <div class="posts">
+      <h1 class="content-subhead">A list of all of the Categories</h1>
+      <section class="post">
+        <header class="post-header">
+          <p class="post-meta">
+          </p>
+        </header>
+        <div class="footer">
+          {% for category, articles in categories|sort %}
+          <li><a href="{{ SITEURL }}/{{ category.url }}">{{ category }}</a> ({{ articles|count }})</li>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} - {{ SITENAME }}{% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="article-title">{{ article.title }}</div>
+<div class="article-published" datetime="{{ article.date.isoformat() }}"><span class="mgl-10">{{ article.locale_date }}</span>
+  {% if article.modified %}
+  <span class="mgl-10">( edited {{ article.locale_modified }} )</span>
+  {% endif %}
+</div>
+<div class="article">
+  {{ article.content }}
+</div>
+<div class="tag">
+  <span class="mgl-10">
+    {% for tag in article.tags|sort %}
+    <a href="{{ SITEURL }}/{{ tag.url }}"># {{ tag }}</a>
+    {% endfor %}
+  </span>
+</div>
+{% endblock %}

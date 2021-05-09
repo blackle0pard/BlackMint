@@ -1,0 +1,43 @@
+{% if articles_page and articles_paginator.num_pages > 1 %}
+{% if USE_PAGER %}
+{% if articles_page.has_previous() %}
+<li class="nav-item">
+    <a href="{{ SITEURL }}/{{ articles_previous_page.url }}">&#9664;</i> {{ _('Newer') }}</a>
+</li>
+{% else %}
+<li class="nav-item">
+</li>
+{% endif %}
+{% if articles_page.has_next() %}
+<li class="nav-item">
+    <a href="{{ SITEURL }}/{{ articles_next_page.url }}">{{ _('Older') }}&#9654;</a>
+</li>
+{% else %}
+<li class="nav-item">
+</li>
+{% endif %}
+{% else %}
+{% if articles_page.has_previous() %}
+{% set num = articles_page.previous_page_number() %}
+<li class="nav-item">
+    <a href="{{ SITEURL }}/{{ articles_previous_page.url }}">&#9664;</i></a>
+</li>
+{% else %}
+<li class="nav-item">
+</li>
+{% endif %}
+{% for num in range( 1, 1 + articles_paginator.num_pages ) %}
+<li class="nav-item">
+    <div class="{{ 'active' if num == articles_page.number else '' }}"><a href="{{ SITEURL }}/{{ articles_paginator.page(num).url if num > 1 else articles_paginator.page(1).url }}">{{ num }}</a></div>
+</li>
+{% endfor %}
+{% if articles_page.has_next() %}
+<li class="nav-item">
+    <a href="{{ SITEURL }}/{{ articles_next_page.url }}">&#9654;</a>
+</li>
+{% else %}
+<li class="nav-item">
+</li>
+{% endif %}
+{% endif %}
+{% endif %}
