@@ -1,2 +1,2 @@
 # blackmint
-pelican theme for my blog
+[pelican](https://blog.getpelican.com/) theme for my blog
